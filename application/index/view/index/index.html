@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>豆瓣租房助手</title>
+
+    <!-- Bootstrap -->
+    <link href="../../../../public/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="../../../../public/static/bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../../../../public/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    .popover{
+          max-width: 80%; /* Max Width of the popover (depending on the container!) */
+    }
+    .subarea, .station{
+          border:2px solid grey;
+          margin-bottom:10px;
+     }
+    .subarea ul, .station ul{
+       margin:5px;
+     }
+     a{
+       color:black;
+     }
+    </style>
+  </head>
+  <body>
+    <div>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="" style="color:white">豆瓣租房助手</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse pull-right">
+          <ul class="nav navbar-nav">
+            <li><a href="" style="color:white">关于</a></li>
+            <li><a href="" style="color:white">更新日志</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    </div>
+
+    <div class="container">
+     <p>
+     <form class="form-inline">
+        <div class="form-group pull-left" style="margin-right:20px">
+          <input type="text" class="form-control" id="keyword" placeholder="输入关键字搜索话题" style="width:200px">
+        </div>
+        <button type="submit" class="btn btn-default" id="search">搜一下</button>
+     </form>
+     </p>
+
+     <div class="panel panel-default">
+       <div class="panel-body">
+         <span class="pull-left">区域：</span>
+         <ul id="area" class="list-inline">
+            <li><a href="" id="0">不限</a><li>
+            <li><a href="" id="1">东城</a><li>
+            <li><a href="" id="2">西城</a><li>
+            <li><a href="" id='3'>朝阳</a><li>
+            <li><a href="" id='4'>海淀</a><li>
+            <li><a href="" id='5'>丰台</a><li>
+            <li><a href="" id='6'>石景山</a><li>
+            <li><a href="" id='7'>通州</a><li>
+            <li><a href="" id='8'>昌平</a><li>
+            <li><a href="" id='9'>大兴</a><li>
+            <li><a href="" id='10'>顺义</a><li>
+            <li><a href="" id='11'>房山</a><li>
+            <li><a href="" id='12'>门头沟</a><li>
+            <li><a href="" id='13'>亦庄开发区</a><li>
+         </ul>
+         <div  class="subarea" id="subarea1" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>安定门</a></li><li><a id='' href='#'>安贞</a></li><li><a id='' href='#'>崇文门</a></li><li><a id='' href='#'>朝阳门内</a></li><li><a id='' href='#'>东花市</a></li><li><a id='' href='#'>地安门</a></li><li><a id='' href='#'>灯市口</a></li><li><a id='' href='#'>东四</a></li><li><a id='' href='#'>东单</a></li><li><a id='' href='#'>东直门</a></li><li><a id='' href='#'>广渠门</a></li><li><a id='' href='#'>和平里</a></li><li><a id='' href='#'>交道口</a></li><li><a id='' href='#'>金宝街</a></li><li><a id='' href='#'>建国门内</a></li><li><a id='' href='#'>天坛</a></li><li><a id='' href='#'>永定门</a></li><li><a id='' href='#'>左安门</a></li><li><a id='' href='#'>北新桥</a></li><li><a id='' href='#'>雍和宫</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea2" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>白纸坊</a></li><li><a id='' href='#'>长椿街</a></li><li><a id='' href='#'>车公庄</a></li><li><a id='' href='#'>德胜门</a></li><li><a id='' href='#'>阜成门</a></li><li><a id='' href='#'>广安门</a></li><li><a id='' href='#'>官园</a></li><li><a id='' href='#'>金融街</a></li><li><a id='' href='#'>六铺炕</a></li><li><a id='' href='#'>马甸</a></li><li><a id='' href='#'>马连道</a></li><li><a id='' href='#'>木樨地</a></li><li><a id='' href='#'>牛街</a></li><li><a id='' href='#'>陶然亭</a></li><li><a id='' href='#'>天宁寺</a></li><li><a id='' href='#'>西四</a></li><li><a id='' href='#'>宣武门</a></li><li><a id='' href='#'>西直门</a></li><li><a id='' href='#'>新街口</a></li><li><a id='' href='#'>西单</a></li><li><a id='' href='#'>月坛</a></li><li><a id='' href='#'>右安门内</a></li><li><a id='' href='#'>前门</a></li><li><a id='' href='#'>马甸</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea3" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>奥林匹克公园</a></li><li><a id='' href='#'>安贞</a></li><li><a id='' href='#'>北苑</a></li><li><a id='' href='#'>北工大</a></li><li><a id='' href='#'>百子湾</a></li><li><a id='' href='#'>常营</a></li><li><a id='' href='#'>成寿寺</a></li><li><a id='' href='#'>朝阳门外</a></li><li><a id='' href='#'>朝阳公园</a></li><li><a id='' href='#'>朝青</a></li><li><a id='' href='#'>CBD</a></li><li><a id='' href='#'>大望路</a></li><li><a id='' href='#'>定福庄</a></li><li><a id='' href='#'>豆各庄</a></li><li><a id='' href='#'>大山子</a></li><li><a id='' href='#'>东大桥</a></li><li><a id='' href='#'>东坝</a></li><li><a id='' href='#'>垡头</a></li><li><a id='' href='#'>广渠门</a></li><li><a id='' href='#'>管庄</a></li><li><a id='' href='#'>>甘露园</a></li><li><a id='' href='#'>高碑店</a></li><li><a id='' href='#'>国展</a></li><li><a id='' href='#'>工体</a></li><li><a id='' href='#'>和平里</a></li><li><a id='' href='#'>欢乐谷</a></li><li><a id='' href='#'>惠新西街</a></li><li><a id='' href='#'>华威桥</a></li><li><a id='' href='#'>红庙</a></li><li><a id='' href='#'>健翔桥</a></li><li><a id='' href='#'>劲松</a></li><li><a id='' href='#'>建国门外</a></li><li><a id='' href='#'>酒仙桥</a></li><li><a id='' href='#'>马甸</a></li><li><a id='' href='#'>农展馆</a></li><li><a id='' href='#'>南沙滩</a></li><li><a id='' href='#'>潘家园</a></li><li><a id='' href='#'>三里屯</a></li><li><a id='' href='#'>四惠</a></li><li><a id='' href='#'>双桥</a></li><li><a id='' href='#'>十八里店</a></li><li><a id='' href='#'>十里河</a></li><li><a id='' href='#'>十里堡</a></li><li><a id='' href='#'>石佛营</a></li><li><a id='' href='#'>来广营</a></li><li><a id='' href='#'>芍药居</a></li><li><a id='' href='#'>呼家楼</a></li><li><a id='' href='#'>马甸</a></li><li><a id='' href='#'>东直门</a></li><li><a id='' href='#'>双井</a></li><li><a id='' href='#'>三元桥</a></li><li><a id='' href='#'>太阳宫</a></li><li><a id='' href='#'>团结湖</a></li><li><a id='' href='#'>甜水园</a></li><li><a id='' href='#'>望京</a></li><li><a id='' href='#'>西坝河</a></li><li><a id='' href='#'>燕莎</a></li><li><a id='' href='#'>亚运村</a></li><li><a id='' href='#'>亚运村小营</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea4" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>安宁庄</a></li><li><a id='' href='#'>白石桥</a></li><li><a id='' href='#'>北太平>庄</a></li><li><a id='' href='#'>厂洼</a></li><li><a id='' href='#'>二里庄</a></li><li><a id='' href='#'>公主坟</a></li><li><a id='' href='#'>甘家口</a></li><li><a id='' href='#'>海淀北部新
+区</a></li><li><a id='' href='#'>军博</a></li><li><a id='' href='#'>马甸</a></li><li><a id='' href='#'>牡丹园</a></li><li><a id='' href='#'>马连洼</a></li><li><a id='' href='#'>清河</a></li><li><a id='' href='#'>苏州桥</a></li><li><a id='' href='#'>世纪城</a></li><li><a id='' href='#'>四季青</a></li><li><a id='' href='#'>双榆树</a></li><li><a id='' href='#'>上地</a></li><li><a id='' href='#'>田村</a></li><li><a id='' href='#'>万寿路</a></li><li><a id='' href='#'>魏公村</a></li><li><a id='' href='#'>五棵松</a></li><li><a id='' href='#'>万柳</a></li><li><a id='' href='#'>五道口</a></li><li><a id='' href='#'>西北旺</a></li><li><a id='' href='#'>小西天</a></li><li><a id='' href='#'>新街口</a></li><li><a id='' href='#'>西直门</a></li><li><a id='' href='#'>西三旗</a></li><li><a id='' href='#'>西山</a></li><li><a id='' href='#'>学院路</a></li><li><a id='' href='#'>西二旗</a></li><li><a id='' href='#'>颐和园</a></li><li><a id='' href='#'>玉泉路</a></li><li><a id='' href='#'>杨庄</a></li><li><a id='' href='#'>圆明园</a></li><li><a id='' href='#'>皂君庙</a></li><li><a id='' href='#'>紫竹桥</a></li><li><a id='' href='#'>中关村
+</a></li><li><a id='' href='#'>知春路</a></li><li><a id='' href='#'>定慧寺</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea5" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>北京南站</a></li><li><a id='' href='#'>北大地</a></li><li><a id='' href='#'>成寿寺</a></li><li><a id='' href='#'>草桥</a></li><li><a id='' href='#'>菜户营</a></li><li><a id='' href='#'>大红门</a></li><li><a id='' href='#'>方庄</a></li><li><a id='' href='#'>和义</a></li><li><a id='' href='#'>花乡</a></li><li><a id='' href='#'>角门</a></li><li><a id='' href='#'>科技园区</a></li><li><a id='' href='#'>看丹桥</a></li><li><a id='' href='#'>六里桥</a></li><li><a id='' href='#'>刘家窑</a></li><li><a id='' href='#'>丽泽</a></li><li><a id='' href='#'>卢沟桥</a></li><li><a id='' href='#'>马家堡</a></li><li><a id='' href='#'>木樨园</a></li><li><a id='' href='#'>蒲黄榆</a></li><li><a id='' href='#'>七里庄</a></li><li><a id='' href='#'>青塔</a></li><li><a id='' href='#'>宋家庄</a></li><li><a id='' href='#'>太平桥</a></li><li><a id='' href='#'>五里店</a></li><li><a id='' href='#'>五棵松</a></li><li><a id='' href='#'>西罗园</a></li><li><a id='' href='#'>新宫</a></li><li><a id='' href='#'>洋桥</a></li><li><a id='' href='#'>玉泉营</a></li><li><a id='' href='#'>岳各庄</a></li><li><a id='' href='#'>赵公口</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea6" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>八角</a></li><li><a id='' href='#'>古城</a></li><li><a id='' href='#'>鲁谷</a></li><li><a id='' href='#'>老山</a></li><li><a id='' href='#'>苹果园</a></li><li><a id='' href='#'>玉泉路</a></li><li><a id='' href='#'>杨庄</a></li><li><a id='' href='#'>石景山玉泉路</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea7" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>北关</a></li><li><a id='' href='#'>果园</a></li><li><a id='' href='#'>九棵树</a></li><li><a id='' href='#'>潞苑</a></li><li><a id='' href='#'>梨园</a></li><li><a id='' href='#'>临河里</a></li><li><a id='' href='#'>马驹桥</a></li><li><a id='' href='#'>乔庄</a></li><li><a id='' href='#'>通州北苑</a></li><li><a id='' href='#'>武夷花园</a></li><li><a id='' href='#'>新华大街</a></li><li><a id='' href='#'>玉桥</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea8" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>北七家</a></li><li><a id='' href='#'>东关</a></li><li><a id='' href='#'>鼓楼大街</a></li><li><a id='' href='#'>回龙观</a></li><li><a id='' href='#'>霍营</a></li><li><a id='' href='#'>立水桥</a></li><li><a id='' href='#'>龙泽</a></li><li><a id='' href='#'>南邵</a></li><li><a id='' href='#'>沙河</a></li><li><a id='' href='#'>天通苑</a></li><li><a id='' href='#'>西关环岛</a></li><li><a id='' href='#'>西三旗</a></li><li><a id='' href='#'>小汤山</a></li><li><a id='' href='#'>安宁庄</a></li><li><a id='' href='#'>西二旗</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea9" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>观音寺</a></li><li><a id='' href='#'>黄村火车站</a></li><li><a id='' href='#'>黄村北</a></li><li><a id='' href='#'>黄村中</a></li><li><a id='' href='#'>旧宫</a></li><li><a id='' href='#'>科技园区</a></li><li><a id='' href='#'>天宫院</a></li><li><a id='' href='#'>西红门</a></li><li><a id='' href='#'>枣园</a></li><li><a id='' href='#'>黄村</a></li><li><a id='' href='#'>瀛海</a></li><li><a id='' href='#'>郁花园</a></li><li><a id='' href='#'>高米店南</a></li><li><a id='' href='#'>大兴开发区</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea10" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>后沙峪</a></li><li><a id='' href='#'>李桥</a></li><li><a id='' href='#'>马坡</a></li><li><a id='' href='#'>顺义城</a></li><li><a id='' href='#'>首都机场</a></li><li><a id='' href='#'>天竺</a></li><li><a id='' href='#'>中央别墅区</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea11" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>长阳</a></li><li><a id='' href='#'>良乡</a></li><li><a id='' href='#'>阎村</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea12" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>城子</a></li><li><a id='' href='#'>石门营</a></li><li><a id='' href='#'>大峪</a></li><li><a id='' href='#'>滨河西区</a></li><li><a id='' href='#'>冯村</a></li></ul></p>
+         </div>
+         <div  class="subarea" id="subarea13" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>马驹桥</a></li><li><a id='' href='#'>亦庄</a></li></ul></p>
+         </div>
+         <div id="empty" style="clear:both"></div>
+         <span class="pull-left">地铁：</span>
+         <ul id="subway" class="list-inline">
+            <li><a href="" id="14">不限</a></li>
+            <li><a href="" id="15">1号线</a></li>
+            <li><a href="" id="16">2号线</a></li>
+            <li><a href="" id="17">4号线</a></li>
+            <li><a href="" id="18">5号线</a></li>
+            <li><a href="" id="19">6号线</a></li>
+            <li><a href="" id="20">7号线</a></li>
+            <li><a href="" id="21">8号线</a></li>
+            <li><a href="" id="22">9号线</a></li>
+            <li><a href="" id="23">10号线</a></li>
+            <li><a href="" id="24">13号线</a></li>
+            <li><a href="" id="25">14号线</a></li>
+            <li><a href="" id="26">S1号线</a></li>
+            <li><a href="" id="27">15号线</a></li>
+            <li><a href="" id="28">16号线</a></li>
+            <li><a href="" id="29">八通线</a></li>
+            <li><a href="" id="30">昌平线</a></li>
+            <li><a href="" id="31">亦庄线</a></li>
+            <li><a href="" id="32">房山线</a></li>
+            <li><a href="" id="33">机场线</a></li>
+         </ul>
+         <div  class="station" id="station15" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>苹果园</a></li><li><a id='' href='#'>古城</a></li><li><a id='' href='#'>八角游乐园</a></li><li><a id='' href='#'>八宝山</a></li><li><a id='' href='#'>玉泉路</a></li><li><a id='' href='#'>五棵松</a></li><li><a id='' href='#'>万寿路</a></li><li><a id='' href='#'>公主坟</a></li><li><a id='' href='#'>军事博物馆</a></li><li><a id='' href='#'>木樨地</a></li><li><a id='' href='#'>南礼士路</a></li><li><a id='' href='#'>复兴门</a></li><li><a id='' href='#'>西单</a></li><li><a id='' href='#'>天安门西</a></li><li><a id='' href='#'>天安门东</a></li><li><a id='' href='#'>王府井</a></li><li><a id='' href='#'>东单</a></li><li><a id='' href='#'>建国门</a></li><li><a id='' href='#'>永安里</a></li><li><a id='' href='#'>国贸</a></li><li><a id='' href='#'>大望路</a></li><li><a id='' href='#'>四惠</a></li><li><a id='' href='#'>四惠东</a></li></ul></p>
+         </div>
+         <div  class="station" id="station16" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>西直门</a></li><li><a id='' href='#'>积水潭</a></li><li><a id='' href='#'>鼓楼大街</a></li><li><a id='' href='#'>安定门</a></li><li><a id='' href='#'>雍和宫</a></li><li><a id='' href='#'>东直门</a></li><li><a id='' href='#'>东四十条</a></li><li><a id='' href='#'>朝阳门</a></li><li><a id='' href='#'>建国门</a></li><li><a id='' href='#'>北京站</a></li><li><a id='' href='#'>崇文门</a></li><li><a id='' href='#'>前门</a></li><li><a id='' href='#'>和平门</a></li><li><a id='' href='#'>宣武门</a></li><li><a id='' href='#'>长椿街</a></li><li><a id='' href='#'>复兴门</a></li><li><a id='' href='#'>阜成门</a></li><li><a id='' href='#'>车公庄</a></li></ul></p>
+         </div>
+         <div  class="station" id="station17" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>天宫院</a></li><li><a id='' href='#'>生物医药基地</a></li><li><a id='' href='#'>义和庄</a></li><li><a id='' href='#'>黄村火车站</a></li><li><a id='' href='#'>黄村西大>街</a></li><li><a id='' href='#'>清源路</a></li><li><a id='' href='#'>枣园</a></li><li><a id='' href='#'>高米店南</a></li><li><a id='' href='#'>高米店北</a></li><li><a id='' href='#'>西红门
+</a></li><li><a id='' href='#'>新宫</a></li><li><a id='' href='#'>公益西桥</a></li><li><a id='' href='#'>角门西</a></li><li><a id='' href='#'>马家堡</a></li><li><a id='' href='#'>北京南站</a></li><li><a id='' href='#'>陶然亭</a></li><li><a id='' href='#'>菜市口</a></li><li><a id='' href='#'>宣武门</a></li><li><a id='' href='#'>西单</a></li><li><a id='' href='#'>灵境胡同</a></li><li><a id='' href='#'>西四</a></li><li><a id='' href='#'>平安里</a></li><li><a id='' href='#'>新街口</a></li><li><a id='' href='#'>西直门</a></li><li><a id='' href='#'>动物园</a></li><li><a id='' href='#'>国家图书馆</a></li><li><a id='' href='#'>魏公村</a></li><li><a id='' href='#'>人民大学</a></li><li><a id='' href='#'>海淀黄庄</a></li><li><a id='' href='#'>中关村</a></li><li><a id='' href='#'>北京大学东门</a></li><li><a id='' href='#'>圆明园</a></li><li><a id='' href='#'>西苑</a></li><li><a id='' href='#'>北宫门</a></li><li><a id='' href='#'>安河桥北</a></li> </ul></p>
+         </div>
+         <div  class="station" id="station18" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>天通苑北</a></li><li><a id='' href='#'>天通苑</a></li><li><a id='' href='#'>天通苑南</a></li><li><a id='' href='#'>立水桥</a></li><li><a id='' href='#'>立水桥南</a></li><li><a id='' href='#'>北苑路北</a></li><li><a id='' href='#'>大屯路东</a></li><li><a id='' href='#'>惠新西街北口</a></li><li><a id='' href='#'>惠新西街南口</a></li><li><a id='' href='#'>>和平西桥</a></li><li><a id='' href='#'>和平里北街</a></li><li><a id='' href='#'>雍和宫</a></li><li><a id='' href='#'>北新桥</a></li><li><a id='' href='#'>张自忠路</a></li><li><a id='' href='#'>东四</a></li><li><a id='' href='#'>灯市口</a></li><li><a id='' href='#'>东单</a></li><li><a id='' href='#'>崇文门</a></li><li><a id='' href='#'>磁器口</a></li><li><a id='' href='#'>天坛
+东门</a></li><li><a id='' href='#'>蒲黄榆</a></li><li><a id='' href='#'>刘家窑</a></li><li><a id='' href='#'>宋家庄</a></li></ul></p>
+         </div>
+         <div  class="station" id="station19" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>海淀五路居</a></li><li><a id='' href='#'>慈寿寺</a></li><li><a id='' href='#'>花园桥</a></li><li><a id='' href='#'>白石桥南</a></li><li><a id='' href='#'>车公庄西</a></li><li><a id='' href='#'>车公庄</a></li><li><a id='' href='#'>平安里</a></li><li><a id='' href='#'>北海北</a></li><li><a id='' href='#'>南锣鼓巷</a></li><li><a id='' href='#'>东四</a></li><li><a id='' href='#'>朝阳门</a></li><li><a id='' href='#'>东大桥</a></li><li><a id='' href='#'>呼家楼</a></li><li><a id='' href='#'>金台路</a></li><li><a id='' href='#'>十里堡</a></li><li><a id='' href='#'>青年路</a></li><li><a id='' href='#'>褡裢坡</a></li><li><a id='' href='#'>黄渠</a></li><li><a id='' href='#'>常营</a></li><li><a id='' href='#'>草房</a></li><li><a id='' href='#'>物资学院路</a></li><li><a id='' href='#'>通州北关</a></li><li><a id='' href='#'>通运门</a></li><li><a id='' href='#'>北运河西</a></li><li><a id='' href='#'>北运河东</a></li><li><a id='' href='#'>郝家府</a></li></ul></p>
+         </div>
+         <div  class="station" id="station20" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>北京西站</a></li><li><a id='' href='#'>湾子</a></li><li><a id='' href='#'>达官营</a></li><li><a id='' href='#'>广安门内</a></li><li><a id='' href='#'>菜市口</a></li><li><a id='' href='#'>虎坊桥</a></li><li><a id='' href='#'>珠市口</a></li><li><a id='' href='#'>桥湾</a></li><li><a id='' href='#'>磁器口</a></li><li><a id='' href='#'>广渠门内</a></li><li><a id='' href='#'>广渠门外</a></li><li><a id='' href='#'>双井</a></li><li><a id='' href='#'>九龙山</a></li><li><a id='' href='#'>大郊亭</a></li><li><a id='' href='#'>百子湾</a></li><li><a id='' href='#'>化工</a></li><li><a id='' href='#'>南楼梓庄</a></li><li><a id='' href='#'>欢乐谷景区</a></li><li><a id='' href='#'>双合</a></li><li><a id='' href='#'>焦化厂</a></li></ul></p>
+         </div>
+         <div  class="station" id="station21" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>朱辛庄</a></li><li><a id='' href='#'>育知路</a></li><li><a id='' href='#'>平西府</a></li><li><a id='' href='#'>回龙观东大街</a></li><li><a id='' href='#'>霍营</a></li><li><a id='' href='#'>育新</a></li><li><a id='' href='#'>西小口</a></li><li><a id='' href='#'>永泰庄</a></li><li><a id='' href='#'>林萃桥</a></li><li><a id='' href='#'>森林公园南门</a></li><li><a id='' href='#'>奥林匹克公园</a></li><li><a id='' href='#'>奥体中心</a></li><li><a id='' href='#'>北土城</a></li><li><a id='' href='#'>安华桥</a></li><li><a id='' href='#'>鼓楼大街</a></li><li><a id='' href='#'>什刹海</a></li><li><a id='' href='#'>南锣鼓巷</a></li><li><a id='' href='#'>王府井</a></li><li><a id='' href='#'>前门</a></li><li><a id='' href='#'>珠市口</a></li></ul></p>
+         </div>
+         <div  class="station" id="station22" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>国家图书馆</a></li><li><a id='' href='#'>白石桥南</a></li><li><a id='' href='#'>白堆子</a></li><li><a id='' href='#'>北京西站</a></li><li><a id='' href='#'>六里桥东</a></li><li><a id='' href='#'>六里桥</a></li><li><a id='' href='#'>七里庄</a></li><li><a id='' href='#'>丰台东大街</a></li><li><a id='' href='#'>丰台南路</a></li><li><a id='' href='#'>科怡路</a></li><li><a id='' href='#'>丰台科技园</a></li><li><a id='' href='#'>郭公庄</a></li><li><a id='' href='#'>军事博物馆</a></li></ul></p>
+         </div>
+         <div  class="station" id="station23" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>巴沟</a></li><li><a id='' href='#'>苏州街</a></li><li><a id='' href='#'>海淀黄庄</a></li><li><a id='' href='#'>知春里</a></li><li><a id='' href='#'>知春路</a></li><li><a id='' href='#'>西土城</a></li><li><a id='' href='#'>牡丹园</a></li><li><a id='' href='#'>北土城</a></li><li><a id='' href='#'>安贞门</a></li><li><a id='' href='#'>惠新西街南口</a></li><li><a id='' href='#'>芍药居</a></li><li><a id='' href='#'>太阳宫</a></li><li><a id='' href='#'>三元桥</a></li><li><a id='' href='#'>亮马桥</a></li><li><a id='' href='#'>农业展览馆</a></li><li><a id='' href='#'>团结湖</a></li><li><a id='' href='#'>呼家楼</a></li><li><a id='' href='#'>金台夕照</a></li><li><a id='' href='#'>国贸</a></li><li><a id='' href='#'>双井</a></li><li><a id='' href='#'>劲松</a></li><li><a id='' href='#'>潘家园</a></li><li><a id='' href='#'>十里河</a></li><li><a id='' href='#'>分钟寺</a></li><li><a id='' href='#'>成寿寺</a></li><li><a id='' href='#'>宋家庄</a></li><li><a id='' href='#'>石榴庄</a></li><li><a id='' href='#'>大红门</a></li><li><a id='' href='#'>角门东</a></li><li><a id='' href='#'>角门西</a></li><li><a id='' href='#'>草桥</a></li><li><a id='' href='#'>纪家庙</a></li><li><a id='' href='#'>首经贸</a></li><li><a id='' href='#'>丰台站</a></li><li><a id='' href='#'>泥洼</a></li><li><a id='' href='#'>西局
+</a></li><li><a id='' href='#'>六里桥</a></li><li><a id='' href='#'>莲花桥</a></li><li><a id='' href='#'>公主坟</a></li><li><a id='' href='#'>西钓鱼台</a></li><li><a id='' href='#'>慈寿寺</a></li><li><a id='' href='#'>车道沟</a></li><li><a id='' href='#'>长春桥</a></li><li><a id='' href='#'>火器营</a></li><li><a id='' href='#'>健德门</a></li></ul></p>
+         </div>
+         <div  class="station" id="station24" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>西直门</a></li><li><a id='' href='#'>大钟寺</a></li><li><a id='' href='#'>知春路</a></li><li><a id='' href='#'>五道口</a></li><li><a id='' href='#'>上地</a></li><li><a id='' href='#'>西二旗</a></li><li><a id='' href='#'>龙泽</a></li><li><a id='' href='#'>回龙观</a></li><li><a id='' href='#'>霍营</a></li><li><a id='' href='#'>立水桥</a></li><li><a id='' href='#'>北苑</a></li><li><a id='' href='#'>望京西</a></li><li><a id='' href='#'>芍药居</a></li><li><a id='' href='#'>光熙门</a></li><li><a id='' href='#'>柳芳</a></li><li><a id='' href='#'>东直门</a></li></ul></p>
+         </div>
+         <div  class="station" id="station25" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>大瓦窑</a></li><li><a id='' href='#'>郭庄子</a></li><li><a id='' href='#'>大井</a></li><li><a id='' href='#'>七里庄</a></li><li><a id='' href='#'>西局</a></li><li><a id='' href='#'>永定门外</a></li><li><a id='' href='#'>景泰</a></li><li><a id='' href='#'>蒲黄榆</a></li><li><a id='' href='#'>方庄</a></li><li><a id='' href='#'>十里河</a></li><li><a id='' href='#'>北工大西门</a></li><li><a id='' href='#'>九龙山</a></li><li><a id='' href='#'>大望路</a></li><li><a id='' href='#'>金台路</a></li><li><a id='' href='#'>枣营</a></li><li><a id='' href='#'>东风北桥</a></li><li><a id='' href='#'>将台</a></li><li><a id='' href='#'>望京南</a></li><li><a id='' href='#'>阜通</a></li><li><a id='' href='#'>望京</a></li><li><a id='' href='#'>东
+湖渠</a></li><li><a id='' href='#'>来广营</a></li><li><a id='' href='#'>善各庄</a></li><li><a id='' href='#'>北京南站</a></li><li><a id='' href='#'>朝阳公园</a></li><li><a id='' href='#'>平
+乐园</a></li></ul></p>
+         </div>
+         <div  class="station" id="station26" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>苹果园</a></li><li><a id='' href='#'>石厂</a></li><li><a id='' href='#'>小园</a></li><li><a id='' href='#'>栗园庄</a></li><li><a id='' href='#'>上岸</a></li><li><a id='' href='#'>桥户营</a></li><li><a id='' href='#'>四道桥</a></li><li><a id='' href='#'>金安桥</a></li></ul></p>
+         </div>
+         <div  class="station" id="station27" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>俸伯</a></li><li><a id='' href='#'>顺义</a></li><li><a id='' href='#'>石门</a></li><li><a id='' href='#'>南法信</a></li><li><a id='' href='#'>后沙峪</a></li><li><a id='' href='#'>花梨坎</a></li><li><a id='' href='#'>国展</a></li><li><a id='' href='#'>孙河</a></li><li><a id='' href='#'>望京东</a></li><li><a id='' href='#'>望京</a></li><li><a id='' href='#'>望京西</a></li><li><a id='' href='#'>关庄</a></li><li><a id='' href='#'>大屯路东</a></li><li><a id='' href='#'>安立路</a></li><li><a id='' href='#'>奥林匹克公园</a></li><li><a id='' href='#'>北沙滩</a></li><li><a id='' href='#'>六道口</a></li><li><a id='' href='#'>清华东路西口</a></li></ul></p>
+         </div>
+         <div  class="station" id="station28" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>西苑</a></li><li><a id='' href='#'>农大南路</a></li><li><a id='' href='#'>马连洼</a></li><li><a id='' href='#'>西北旺</a></li><li><a id='' href='#'>永丰南</a></li><li><a id='' href='#'>永丰</a></li><li><a id='' href='#'>屯佃</a></li><li><a id='' href='#'>稻香湖路</a></li><li><a id='' href='#'>温阳路</a></li><li><a id='' href='#'>北安河</a></li></ul></p>
+         </div>
+         <div  class="station" id="station29" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>四惠</a></li><li><a id='' href='#'>四惠东</a></li><li><a id='' href='#'>高碑店</a></li><li><a id='' href='#'>传媒大学</a></li><li><a id='' href='#'>双桥</a></li><li><a id='' href='#'>管庄</a></li><li><a id='' href='#'>八里桥</a></li><li><a id='' href='#'>通州北苑</a></li><li><a id='' href='#'>果园</a></li><li><a id='' href='#'>九棵树</a></li><li><a id='' href='#'>梨园</a></li><li><a id='' href='#'>临河里</a></li><li><a id='' href='#'>土桥</a></li></ul></p>
+         </div>
+         <div  class="station" id="station30" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>十三陵景区</a></li><li><a id='' href='#'>昌平东关</a></li><li><a id='' href='#'>北邵洼</a></li><li><a id='' href='#'>南邵</a></li><li><a id='' href='#'>沙河高教园</a></li><li><a id='' href='#'>沙河</a></li><li><a id='' href='#'>巩华城</a></li><li><a id='' href='#'>朱辛庄</a></li><li><a id='' href='#'>生命科学园</a></li><li><a id='' href='#'>西二旗</a></li><li><a id='' href='#'>昌平站</a></li><li><a id='' href='#'>昌平</a></li></ul></p>
+         </div>
+         <div  class="station" id="station31" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>宋家庄</a></li><li><a id='' href='#'>肖村</a></li><li><a id='' href='#'>小红门</a></li><li><a id='' href='#'>旧宫</a></li><li><a id='' href='#'>亦庄桥</a></li><li><a id='' href='#'>亦庄文化园</a></li><li><a id='' href='#'>万源街</a></li><li><a id='' href='#'>荣京东街</a></li><li><a id='' href='#'>同济南路</a></li><li><a id='' href='#'>经海路</a></li><li><a id='' href='#'>次渠南</a></li><li><a id='' href='#'>次渠</a></li><li><a id='' href='#'>亦庄火车站</a></li></ul></p>
+         </div>
+         <div  class="station" id="station32" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>郭公庄</a></li><li><a id='' href='#'>大葆台</a></li><li><a id='' href='#'>稻田</a></li><li><a id='' href='#'>长阳</a></li><li><a id='' href='#'>篱笆房</a></li><li><a id='' href='#'>广阳城</a></li><li><a id='' href='#'>良乡大学城北</a></li><li><a id='' href='#'>良乡大学城</a></li><li><a id='' href='#'>良乡大学城西</a></li><li><a id='' href='#'>良乡南关</a></li><li><a id='' href='#'>苏庄</a></li></ul></p>
+         </div>
+         <div  class="station" id="station33" style="display:none;">
+         <p><ul class='list-inline'><li><a id='' href='#'>东直门</a></li><li><a id='' href='#'>三元桥</a></li><li><a id='' href='#'>T3航站楼</a></li></ul></p>
+         </div>
+         <div id="empty" style="clear:both"></div>
+         <span class="pull-left">房型：</span>
+         <ul class="list-inline">
+            <li><a href="">不限</a><li>
+            <li><a href="">1室</a><li>
+            <li><a href="">2室</a><li>
+            <li><a href="">3室</a><li>
+            <li><a href="">4室</a><li>
+            <li><a href="">单间</a><li>
+         </ul>
+         <span class="pull-left">价格：</span>
+         <ul class="list-inline">
+            <li><a href="">不限</a><li>
+            <li><a href="">1500元以下</a><li>
+            <li><a href="">1500~2000元</a><li>
+            <li><a href="">2000~2500元</a><li>
+            <li><a href="">2500~3000元</a><li>
+            <li><a href="">3000~3500元</a><li>
+            <li><a href="">3500~4000元</a><li>
+            <li><a href="">4000~4500元</a><li>
+            <li><a href="">4500元以上</a><li>
+         </ul>
+         <span class="pull-left">出租：</span>
+         <ul class="list-inline">
+            <li><a href="">不限</a><li>
+            <li><a href="">整租</a><li>
+            <li><a href="">合租</a><li>
+         </ul>
+         <span class="pull-left">卧室：</span>
+         <ul class="list-inline">
+            <li><a href="">不限</a><li>
+            <li><a href="">主卧</a><li>
+            <li><a href="">次卧</a><li>
+         </ul>
+         <span class="pull-left">性别：</span>
+         <ul class="list-inline">
+            <li><a href="">不限</a><li>
+            <li><a href="">限男</a><li>
+            <li><a href="">限女</a><li>
+         </ul>
+         <span class="pull-left">发布：</span>
+         <ul class="list-inline">
+            <li><a href="">不限</a><li>
+            <li><a href="">1天内</a><li>
+            <li><a href="">1周内</a><li>
+         </ul>
+         <span class="pull-left">备注：默认只展示最近1个月内房源数据</span>
+       </div>
+     </div>
+
+      <div class="starter-template">
+          <div class="table-responsive">
+             <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                           <th>话题</th>
+                           <th>作者</th>
+                           <th>来源</th>
+                           <th>日期</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {volist name='list' id='user'}
+                      <tr>
+                          <td><a href={$user.url} target="view_window">{$user.title}</a></td>
+                          <td> {$user.author}</td>
+                          <td> {$user.source}</td>
+			  <td> {$user.firsteditime|date="Y-m-d H:i",###}</td>
+                      </tr>
+                      {/volist}
+                 </tbody>
+             </table>
+          </div>
+      </div>
+      <div class="pull-right">{$list->render()}</div>
+    </div><!-- /.container -->
+
+  <script>
+        $(function() {
+           
+           $("#search").click(function(){
+              keyword = $("#keyword").val(); 
+              
+           })
+           //$("#area li a").hover(function(){
+           //   id = $(this).attr('id');
+           //   displayid = "subarea" + id;
+           //   for (var i=1;i<=13;i++){
+           //     $("#subarea" + i).hide();
+           //   }
+           //   $("#" + displayid).show();
+           //});
+
+           //$(".subarea").mouseleave(function(){
+           //   $(".subarea").hide(); 
+           //});
+
+           //$("#subway li a").mouseenter(function(){
+           //   id = $(this).attr('id');
+           //   displayid = "station" + id;
+           //   for (var i=14;i<=33;i++){
+           //     $("#station" + i).hide();
+           //   }
+           //   $("#" + displayid).show();
+           //});
+           //$(".station").mouseleave(function(){
+           //   $(".station").hide(); 
+           //});
+           
+        })
+  </script>
+
+  </body>
+</html>
