@@ -265,40 +265,31 @@
        </div>
      </div>
 
-      <div class="starter-template">
-          <div class="table-responsive">
-             <table class="table table-bordered">
-                  <thead>
-                      <tr>
-                           <th>话题</th>
-                           <th>作者</th>
-                           <th>来源</th>
-                           <th>日期</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      {volist name='list' id='user'}
-                      <tr>
-                          <td><a href={$user.url} target="view_window">{$user.title}</a></td>
-                          <td> {$user.author}</td>
-                          <td> {$user.source}</td>
-			  <td> {$user.firsteditime|date="Y-m-d H:i",###}</td>
-                      </tr>
-                      {/volist}
-                 </tbody>
-             </table>
-          </div>
-      </div>
-      <div class="pull-right">{$list->render()}</div>
+    <div id="paginate">
+       {include file="../application/index/view/index/list.html"}
+    </div>
     </div><!-- /.container -->
 
   <script>
+    $(document).on('click', '.pagination a', function(event) {
+        var url = $(this).attr('href');
+        $.ajax({
+            url: url,
+            type: 'get',
+        })
+        .done(function(data) {
+            $("#paginate").html(data);
+            
+        })
+        return false;
+    });
         $(function() {
            
            $("#search").click(function(){
               keyword = $("#keyword").val(); 
               
            })
+ 
            //$("#area li a").hover(function(){
            //   id = $(this).attr('id');
            //   displayid = "subarea" + id;

@@ -1,0 +1,27 @@
+<div class="starter-template">
+          <div class="table-responsive">
+             <table class="table table-bordered" style="table-layout:fixed">
+                  <thead>
+                      <tr>
+                           <th class="col-md-7">话题</th>
+                           <th class="col-md-2">作者</th>
+                           <th class="col-md-1">来源</th>
+                           <th class="col-md-2">日期</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {volist name='list' id='user'}
+                      <tr>
+                          <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><a class="url" href={$user.url} target="view_window">{$user.title}</a></td>
+                          <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"> {$user.author}</td>
+                          <td> {$user.source}</td>
+                          <td> {$user.firsteditime|date="Y-m-d H:i",###}</td>
+                      </tr>
+                      {/volist}
+                  </tbody>
+                 </div>
+             </table>
+          </div>
+</div>
+<div class="pull-right">{$list->render()}</div>
+
