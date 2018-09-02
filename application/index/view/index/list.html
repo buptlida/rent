@@ -3,10 +3,10 @@
              <table class="table table-bordered" style="table-layout:fixed">
                   <thead>
                       <tr>
-                           <th class="col-md-7">话题</th>
-                           <th class="col-md-2">作者</th>
-                           <th class="col-md-1">来源</th>
-                           <th class="col-md-2">日期</th>
+                           <th class="col-xs-7" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">话题</th>
+                           <th class="col-xs-2" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">作者</th>
+                           <th class="col-xs-2" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">来源</th>
+                           <th class="col-xs-2" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">日期</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -14,8 +14,8 @@
                       <tr>
                           <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><a class="url" href={$user.url} target="view_window">{$user.title}</a></td>
                           <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"> {$user.author}</td>
-                          <td> {$user.source}</td>
-                          <td> {$user.firsteditime|date="Y-m-d H:i",###}</td>
+                          <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"> {$user.source}</td>
+                          <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"> {$user.firsteditime|date="Y-m-d H:i",###}</td>
                       </tr>
                       {/volist}
                   </tbody>
