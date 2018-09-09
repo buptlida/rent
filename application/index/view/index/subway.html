@@ -1,0 +1,9 @@
+<p>
+<ul id="subway" class='list-inline'>
+<?php if(isset($subway)){ ?>
+   {volist name='subway' id='subway'}
+   <li><a id={$subway.code}>{$subway.name}</a></li>
+   {/volist}
+<?php } ?>
+</ul>
+</p>

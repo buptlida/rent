@@ -1,0 +1,9 @@
+<p>
+<ul id="subregion" class="list-inline">
+<?php if(isset($subregion)){ ?>
+{volist name='subregion' id='subregion'}
+  <li><a id={$subregion.code}>{$subregion.streetname}</a></li>
+{/volist}
+<?php } ?>
+</ul>
+</p>
